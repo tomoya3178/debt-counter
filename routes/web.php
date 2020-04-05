@@ -18,3 +18,4 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('/', 'IndexController@index');
+Route::get('/index/debtCount', 'IndexController@debtCount');
