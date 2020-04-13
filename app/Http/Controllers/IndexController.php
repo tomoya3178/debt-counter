@@ -11,21 +11,13 @@ class IndexController extends Controller
     
     public function index()
     {
-        $time = strtotime("2020-01-01 00:00:00");
-        $debt = 10000;
-        
-        $now = strtotime(date("Y-m-d H:i:s"));
-        
-        $debt = (($now - $time) * 0.01) * $debt;
-        
-        $data['debt'] = $debt;
-        return view('index', $data);
+        return view('index');
     }
     
     public function debtCount()
     {
-        $time = strtotime("2020-01-01 00:00:00");
-        $debt = 10000;
+        $time = strtotime("2020-01-04 00:00:00");
+        $debt = 20000;
         
         $now = strtotime(date("Y-m-d H:i:s"));
         

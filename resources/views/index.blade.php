@@ -6,8 +6,6 @@
     </head>
 
     <body>
-        <p>{{ $debt }}円</p>
-        
         <div id="app">
             <counter-component></counter-component>
         </div>

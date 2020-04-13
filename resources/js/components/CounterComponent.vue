@@ -1,28 +1,31 @@
 <template>
-    <p>{{ debt }}</p>
+    <p>借金額：{{ debt }}</p>
 </template>
 
 <script>
 const axios = require('axios');
 
 export default {
-    mounted: function() {
-        this.debtCount();
-        setInterval(this.debtCount, 1000);
-    },
+    name: "CounterCompornent",
     data: function() {
         return {
-            debt: '',
-        };
-    },
-    methods: {
-        debtCount: function() {
-            axios.get('/index/debtCount')
-                .then(re => {
-                    console.log(re.debt);
-                    this.debt = re.debt;
-                }).catch( error => { console.log(error); });
+            debt: 'loading...'
         }
-    }
+    },
+    mounted: function() {
+        let that = this;
+        setInterval(function() {
+            axios
+                .get('/index/debtCount')
+                .then(response => {
+                    console.log(response);
+                    console.log(response.data);
+                    that.debt = response.data + '円';
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        }, 1000);
+    },
 }
 </script>

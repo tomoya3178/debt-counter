@@ -1915,26 +1915,23 @@ __webpack_require__.r(__webpack_exports__);
 var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  mounted: function mounted() {
-    this.debtCount();
-    setInterval(this.debtCount, 1000);
-  },
+  name: "CounterCompornent",
   data: function data() {
     return {
-      debt: ''
+      debt: 'loading...'
     };
   },
-  methods: {
-    debtCount: function debtCount() {
-      var _this = this;
-
-      axios.get('/index/debtCount').then(function (re) {
-        console.log(re, re.debt);
-        _this.debt = re.debt;
+  mounted: function mounted() {
+    var that = this;
+    setInterval(function () {
+      axios.get('/index/debtCount').then(function (response) {
+        console.log(response);
+        console.log(response.data);
+        that.debt = response.data + '円';
       })["catch"](function (error) {
         console.log(error);
       });
-    }
+    }, 1000);
   }
 });
 
@@ -37343,7 +37340,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("p", [_vm._v(_vm._s(_vm.debt))])
+  return _c("p", [_vm._v("借金額：" + _vm._s(_vm.debt))])
 }
 var staticRenderFns = []
 render._withStripped = true
