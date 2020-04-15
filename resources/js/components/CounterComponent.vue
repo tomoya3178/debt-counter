@@ -1,5 +1,9 @@
 <template>
-    <p>借金額：{{ debt }}</p>
+    <div>
+        <p>{{ now }}</p>
+        <p>{{ elapsed }}</p>
+        <p>{{ debt }}</p>
+    </div>
 </template>
 
 <style>
@@ -16,6 +20,8 @@ export default {
     name: "CounterCompornent",
     data: function() {
         return {
+            now: 'loading...',
+            elapsed: 'loading...',
             debt: 'loading...'
         }
     },
@@ -26,8 +32,9 @@ export default {
                 .get('/index/debtCount')
                 .then(response => {
                     console.log(response);
-                    console.log(response.data);
-                    that.debt = response.data + '円';
+                    that.now = response.data.now;
+                    that.elapsed = response.data.elapsed + '秒経過';
+                    that.debt = response.data.debt + '円';
                 })
                 .catch(error => {
                     console.log(error);

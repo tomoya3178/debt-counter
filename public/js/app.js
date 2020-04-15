@@ -1919,12 +1919,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "CounterCompornent",
   data: function data() {
     return {
+      now: 'loading...',
+      elapsed: 'loading...',
       debt: 'loading...'
     };
   },
@@ -1933,8 +1939,9 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
     setInterval(function () {
       axios.get('/index/debtCount').then(function (response) {
         console.log(response);
-        console.log(response.data);
-        that.debt = response.data + '円';
+        that.now = response.data.now;
+        that.elapsed = response.data.elapsed + '秒経過';
+        that.debt = response.data.debt + '円';
       })["catch"](function (error) {
         console.log(error);
       });
@@ -37992,7 +37999,13 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("p", [_vm._v("借金額：" + _vm._s(_vm.debt))])
+  return _c("div", [
+    _c("p", [_vm._v(_vm._s(_vm.now))]),
+    _vm._v(" "),
+    _c("p", [_vm._v(_vm._s(_vm.elapsed))]),
+    _vm._v(" "),
+    _c("p", [_vm._v(_vm._s(_vm.debt))])
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
