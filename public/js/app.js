@@ -1940,8 +1940,8 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
       axios.get('/index/debtCount').then(function (response) {
         console.log(response);
         that.now = response.data.now;
-        that.elapsed = response.data.elapsed + '秒経過';
-        that.debt = response.data.debt + '円';
+        that.elapsed = response.data.elapsed.toLocaleString() + '秒経過';
+        that.debt = response.data.debt.toLocaleString() + '円';
       })["catch"](function (error) {
         console.log(error);
       });

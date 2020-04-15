@@ -32,9 +32,10 @@ export default {
                 .get('/index/debtCount')
                 .then(response => {
                     console.log(response);
+                    
                     that.now = response.data.now;
-                    that.elapsed = response.data.elapsed + '秒経過';
-                    that.debt = response.data.debt + '円';
+                    that.elapsed = response.data.elapsed.toLocaleString() + '秒経過';
+                    that.debt = response.data.debt.toLocaleString() + '円';
                 })
                 .catch(error => {
                     console.log(error);

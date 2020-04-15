@@ -17,11 +17,12 @@ class IndexController extends Controller
     public function debtCount()
     {
         $time = strtotime("2020-01-04 00:00:00");
-        $now = strtotime(date("Y-m-d H:i:s"));
+        $date = date("Y-m-d H:i:s");
+        $now = strtotime($date);
         $elapsed = $now - $time;
         $debt = 20000;
         
-        $data['now'] = $now;
+        $data['now'] = $date;
         $data['elapsed'] = $elapsed;
         $data['debt'] = ($elapsed * 0.01) * $debt;
         
