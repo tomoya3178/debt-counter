@@ -2,6 +2,13 @@
     <p>借金額：{{ debt }}</p>
 </template>
 
+<style>
+p {
+    text-align: center;
+    font-size: 50px;
+}
+</style>
+
 <script>
 const axios = require('axios');
 
